@@ -111,11 +111,11 @@ local SkipListMt = {
 	end,
 	
 	__ipairs = function ( self )
-		local node, count, size, values = _head[self], 0, _size[self], _values[self]
-		return function()
-			if count < size then
-				node, count = node[3][1], count + 1
-				return count, values[node[1]]
+		return function( _, k )
+			k = k or 0
+			local v = self[k+1]
+			if v then
+				return k+1, v
 			end
     end
   end,
